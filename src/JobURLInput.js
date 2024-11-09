@@ -5,7 +5,8 @@ function JobURLInput() {
     const [urls, setUrls] = useState("");
     const [resume, setResume] = useState("");
     const [backendMessage, setBackendMessage] = useState("");
-    const [testMessage, setTestMessage] = useState("");
+    const [aiResponse, setAiResponse] = useState("");
+    const [loading, setLoading] = useState(false);
 
     // Test backend connection on component mount
     useEffect(() => {
@@ -17,41 +18,45 @@ function JobURLInput() {
             })
             .then(data => {
                 console.log('Data received:', data);
-                setTestMessage(data.message);
+                // You can choose to log the message or handle it differently
             })
             .catch(error => {
                 console.error('Fetch error:', error);
-                setTestMessage('Error connecting to backend');
+                setBackendMessage('Error connecting to backend');
             });
     }, []);
 
     // Handle form submission to backend
     const handleSubmit = async () => {
+        setLoading(true);
         try {
-            const response = await axios.post('http://localhost:5001/scrape_jobs', {
-                urls: urls.split('\n'),
+            const response = await axios.post('http://localhost:5001/analyze_resume', {
                 resume: resume
             });
-            setBackendMessage(response.data.message);
+            setAiResponse(response.data.message);
+            setBackendMessage("");
         } catch (error) {
             console.error("Error connecting to backend:", error);
             setBackendMessage("Failed to connect");
+            setAiResponse("");
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
         <div className="container mt-4">
             <h3 className="mb-4">Job Match Analyzer</h3>
-            
-            {/* Display test connection message */}
-            <div className="alert alert-info">
+
+            {/* Commented out the backend connection message alert */}
+            {/* <div className="alert alert-info">
                 Backend Connection: {testMessage}
-            </div>
+            </div> */}
 
             <div className="mb-3">
-                <label htmlFor="jobUrls" className="form-label">Job URLs (one per line)</label>
+                <label htmlFor="urls" className="form-label">Job URLs (one per line)</label>
                 <textarea
-                    id="jobUrls"
+                    id="urls"
                     className="form-control"
                     rows="4"
                     placeholder="Paste job URLs here, one per line"
@@ -72,7 +77,20 @@ function JobURLInput() {
                 />
             </div>
 
-            <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+            <button type="button" className="btn btn-primary" onClick={handleSubmit} disabled={loading}>
+                {loading ? (
+                    <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                ) : (
+                    "Submit"
+                )}
+            </button>
+
+            <div className="mt-4">
+                <h5>AI Response:</h5>
+                <div className="alert alert-secondary">
+                    {aiResponse || "No response yet."}
+                </div>
+            </div>
         </div>
     );
 }
