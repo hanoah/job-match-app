@@ -18,6 +18,10 @@
 .env.test.local
 .env.production.local
 
+# Ignore SSH keys
+/job_match_ssh
+/job_match_ssh.pub
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
