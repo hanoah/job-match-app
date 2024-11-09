@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# Job Match Analyzer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+The Job Match Analyzer is a web application that allows users to input job URLs and their resumes. The application sends the resume to an AI model for analysis, which returns a suggested job type based on the content of the resume. This project utilizes React for the frontend and Express.js for the backend, integrating with the OpenAI API for natural language processing.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Input for job URLs (currently not connected to any functionality).
+- Text area for pasting resumes.
+- AI analysis of the resume to suggest a likely job type.
+- Loading spinner on the submit button to indicate processing.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend**: React
+- **Backend**: Express.js
+- **Database**: None (currently)
+- **API**: OpenAI API
+- **Styling**: Bootstrap (optional)
 
-### `npm test`
+## Setup Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+- Node.js (version 12 or higher)
+- npm (Node Package Manager)
+- An OpenAI API key
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the repository**:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   git clone https://github.com/yourusername/job-match-analyzer.git
+   cd job-match-analyzer
+   ```
 
-### `npm run eject`
+2. **Navigate to the backend directory**:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   cd backend
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **Install backend dependencies**:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```bash
+   npm install
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. **Create a `.env` file** in the `backend` directory and add your OpenAI API key:
 
-## Learn More
+   ```plaintext
+   OPENAI_API_KEY=your-openai-api-key
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5. **Navigate to the frontend directory**:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   ```bash
+   cd ../src
+   ```
 
-### Code Splitting
+6. **Install frontend dependencies**:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   ```bash
+   npm install
+   ```
 
-### Analyzing the Bundle Size
+### Running the Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. **Start the backend server**:
 
-### Making a Progressive Web App
+   ```bash
+   cd backend
+   node server.js
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+   The server will run on `http://localhost:5001`.
 
-### Advanced Configuration
+2. **Start the frontend application**:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+   Open a new terminal window, navigate to the frontend directory, and run:
 
-### Deployment
+   ```bash
+   cd src
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+   The frontend will run on `http://localhost:3000`.
 
-### `npm run build` fails to minify
+### Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Open your web browser and navigate to `http://localhost:3000`.
+2. Paste job URLs into the "Job URLs" text area (currently not connected to any functionality).
+3. Paste your resume into the "Resume" text area.
+4. Click the "Submit" button to analyze the resume.
+5. The AI's response will be displayed below the button.
+
+### Logging
+
+The backend logs all incoming requests and the prompts sent to the OpenAI API. You can view these logs in the terminal where the backend server is running.
+
+### Contributing
+
+Contributions are welcome! If you have suggestions for improvements or new features, feel free to open an issue or submit a pull request.
+
+### License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [OpenAI](https://openai.com/) for providing the API for natural language processing.
+- [React](https://reactjs.org/) for building the user interface.
+- [Express.js](https://expressjs.com/) for creating the backend server.
