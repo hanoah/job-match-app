@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const port = process.env.API_URL.split(':')[2];
+const port = process.env.PORT || 5001; // Use the PORT environment variable or default to 5000
 
 // Use the API_URL as needed
 console.log("API URL:", process.env.API_URL);
