@@ -6,7 +6,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const port = 5001;
+const port = process.env.API_URL.split(':')[2];
+
+// Use the API_URL as needed
+console.log("API URL:", process.env.API_URL);
 
 // Initialize OpenAI
 const openai = new OpenAI({
@@ -14,7 +17,7 @@ const openai = new OpenAI({
 });
 
 app.use(cors({
-    origin: 'https://job-match-app.onrender.com' // Allow requests from the same origin
+    origin: '*' // Allow requests from any origin for local testing
 }));
 app.use(express.json());
 
@@ -86,3 +89,5 @@ app.post('/scrape_jobs', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
+
+

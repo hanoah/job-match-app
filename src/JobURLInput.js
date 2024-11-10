@@ -11,14 +11,14 @@ function JobURLInput() {
     // Test backend connection on component mount
     useEffect(() => {
         console.log('Component mounted, attempting to fetch...');
-        fetch('http://localhost:5001/test')
+        console.log("API URL:", process.env.REACT_APP_API_URL); // Log the API URL
+        fetch(`${process.env.REACT_APP_API_URL}/test`)
             .then(response => {
                 console.log('Response received:', response);
                 return response.json();
             })
             .then(data => {
                 console.log('Data received:', data);
-                // You can choose to log the message or handle it differently
             })
             .catch(error => {
                 console.error('Fetch error:', error);
@@ -30,7 +30,7 @@ function JobURLInput() {
     const handleSubmit = async () => {
         setLoading(true);
         try {
-            const response = await axios.post('https://job-match-app.onrender.com/analyze_resume', {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/analyze_resume`, {
                 resume: resume
             });
             setAiResponse(response.data.message);
@@ -64,7 +64,6 @@ function JobURLInput() {
                     onChange={(e) => setUrls(e.target.value)}
                 />
             </div>
-
             <div className="mb-3">
                 <label htmlFor="resume" className="form-label">Resume</label>
                 <textarea
@@ -84,7 +83,6 @@ function JobURLInput() {
                     "Submit"
                 )}
             </button>
-
             <div className="mt-4">
                 <h5>AI Response:</h5>
                 <div className="alert alert-secondary">
