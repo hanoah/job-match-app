@@ -17,7 +17,10 @@ const openai = new OpenAI({
 });
 
 app.use(cors({
-    origin: '*' // Allow requests from any origin for local testing
+    origin: [
+        'http://localhost:3000', // Local development
+        'https://job-match-app.onrender.com' // Render production URL
+    ]
 }));
 app.use(express.json());
 
