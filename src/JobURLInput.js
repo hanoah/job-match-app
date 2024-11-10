@@ -30,7 +30,7 @@ function JobURLInput() {
     const handleSubmit = async () => {
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:5001/analyze_resume', {
+            const response = await axios.post('https://job-match-app.onrender.com/analyze_resume', {
                 resume: resume
             });
             setAiResponse(response.data.message);
