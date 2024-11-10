@@ -13,7 +13,9 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://job-match-app.onrender.com' // Allow requests from the same origin
+}));
 app.use(express.json());
 
 // Log all incoming requests
