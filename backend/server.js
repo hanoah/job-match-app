@@ -19,7 +19,8 @@ const openai = new OpenAI({
 app.use(cors({
     origin: [
         'http://localhost:3000', // Local development
-        'https://job-match-app.onrender.com' // Render production URL
+        'https://job-match-app.onrender.com', // Render production URL
+        'https://job-match-hx5g.onrender.com' // Your frontend's deployed URL
     ]
 }));
 app.use(express.json());
